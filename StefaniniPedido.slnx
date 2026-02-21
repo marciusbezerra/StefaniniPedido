@@ -1,0 +1,10 @@
+<Solution>
+  <Project Path="docker-compose.dcproj">
+    <Build />
+  </Project>
+  <Project Path="StefaniniPedido.API/StefaniniPedido.API.csproj" />
+  <Project Path="StefaniniPedido.Application/StefaniniPedido.Application.csproj" />
+  <Project Path="StefaniniPedido.Domain/StefaniniPedido.Domain.csproj" />
+  <Project Path="StefaniniPedido.Infrastructure/StefaniniPedido.Infrastructure.csproj" />
+  <Project Path="StefaniniPedido.Tests/StefaniniPedido.Tests.csproj" />
+</Solution>

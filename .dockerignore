@@ -1,0 +1,6 @@
+.dockerignore
+**/obj/
+**/bin/
+**/node_modules/
+**/.git/
+**/dist/
