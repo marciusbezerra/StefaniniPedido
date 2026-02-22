@@ -3,7 +3,7 @@ WORKDIR /app
 COPY clients/pedido-angular/package*.json ./
 RUN npm ci
 COPY clients/pedido-angular/ .
-RUN npm run build
+RUN npm run build -- --configuration production
 
 FROM nginx:alpine
 RUN apk update && apk upgrade && rm -rf /var/cache/apk/*
