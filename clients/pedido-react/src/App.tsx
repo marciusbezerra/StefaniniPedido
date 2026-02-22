@@ -4,6 +4,7 @@ import { PedidoList } from './pages/PedidoList';
 import { PedidoForm } from './pages/PedidoForm';
 import { ProdutoList } from './pages/ProdutoList';
 import { ProdutoForm } from './pages/ProdutoForm';
+import { PedidoDetalhes } from './pages/PedidoDetalhes';
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
                     <Route path="/pedidos" element={<PedidoList />} />
                     <Route path="/pedidos/novo" element={<PedidoForm />} />
                     <Route path="/pedidos/editar/:id" element={<PedidoForm />} />
+                    <Route path="/pedidos/:id" element={<PedidoDetalhes />} />
                     <Route path="/produtos" element={<ProdutoList />} />
                     <Route path="/produtos/novo" element={<ProdutoForm />} />
                     <Route path="/produtos/editar/:id" element={<ProdutoForm />} />

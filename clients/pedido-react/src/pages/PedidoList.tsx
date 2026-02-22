@@ -62,6 +62,7 @@ export function PedidoList() {
                                     <td><span className={`badge ${p.pago ? 'bg-success' : 'bg-warning'}`}>{p.pago ? 'Sim' : 'Não'}</span></td>
                                     <td>
                                         <button className="btn btn-sm btn-outline-primary me-1" onClick={() => navigate(`/pedidos/editar/${p.id}`)}>Editar</button>
+                                        <button className="btn btn-sm btn-outline-secondary me-1" onClick={() => navigate(`/pedidos/${p.id}`)}>Detalhes</button>
                                         <button className="btn btn-sm btn-outline-danger" onClick={() => deletar(p.id)}>Excluir</button>
                                     </td>
                                 </tr>
