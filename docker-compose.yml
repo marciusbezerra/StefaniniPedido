@@ -34,7 +34,9 @@
       sqlserver:
         condition: service_healthy
     networks:
-      - stefanini_net
+      stefanini_net:
+        aliases:
+          - api
 
   client-angular:
     build:
@@ -67,7 +69,6 @@
 volumes:
   sqlserver_data:
     name: stefanini_sqlserver_data
-
 
 networks:
   stefanini_net:
