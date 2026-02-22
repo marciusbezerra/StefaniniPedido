@@ -1,0 +1,48 @@
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Produtos</h2>
+        <button class="btn btn-primary" (click)="novo()">+ Novo Produto</button>
+    </div>
+    @if (erro(); as e) {
+    <div class="alert alert-danger">{{ e }}</div>
+    }
+    @if (loading()) {
+    <div class="text-center">
+        <div class="spinner-border"></div>
+    </div>
+    }
+    @if (produtos(); as prods) {
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Nome</th>
+                    <th>Valor</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (p of prods; track p.id) {
+                <tr>
+                    <td>{{ p.id }}</td>
+                    <td>{{ p.nomeProduto }}</td>
+                    <td>{{ p.valor | currency:'BRL' }}</td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-primary me-1" (click)="editar(p.id)">Editar</button>
+                        <button class="btn btn-sm btn-outline-danger" (click)="deletar(p.id)">Excluir</button>
+                    </td>
+                </tr>
+                }
+                @if (prods.length === 0) {
+                <tr>
+                    <td colspan="4" class="text-center">Nenhum produto encontrado.</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    } @else {
+    <div class="text-center text-muted">Carregando produtos...</div>
+    }
+</div>
