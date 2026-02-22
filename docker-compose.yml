@@ -2,6 +2,7 @@
   sqlserver:
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: stefanini_sqlserver
+    restart: unless-stopped
     environment:
       SA_PASSWORD: "${SA_PASSWORD}"
       ACCEPT_EULA: "Y"
@@ -20,6 +21,7 @@
 
   stefaninipedido.api:
     image: ${DOCKER_REGISTRY-}stefaninipedidoapi
+    restart: unless-stopped
     build:
       context: .
       dockerfile: StefaniniPedido.API/Dockerfile
@@ -43,6 +45,7 @@
       context: .
       dockerfile: clients/pedido-angular/Dockerfile
     container_name: stefanini_angular
+    restart: unless-stopped
     ports:
       - "4200:80"
     depends_on:
@@ -57,6 +60,7 @@
       context: .
       dockerfile: clients/pedido-react/Dockerfile
     container_name: stefanini_react
+    restart: unless-stopped
     ports:
       - "3002:80"
     depends_on:

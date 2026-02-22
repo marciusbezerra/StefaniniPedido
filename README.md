@@ -21,7 +21,7 @@ Executar os seguintes comandos
 git clone <repo-url>
 cd StefaniniPedido
 # .env copiar o .env agora para cá
-docker-compose up --build
+docker compose up -d --build
 ```
 
 | Serviço            | URL                   |
@@ -35,8 +35,20 @@ docker-compose up --build
 
 ---
 
+## Aplicação Online (Server Próprio)
+
+| Serviço            | URL                                  |
+| ------------------ | ------------------------------------ |
+| **Swagger (API)**  | https://stefanini.marciusbezerra.com |
+| **React Client**   | https://react.marciusbezerra.com     |
+| **Angular Client** | https://angular.marciusbezerra.com   |
+
+---
+
 ## OBSERVAÇÕES IMPORTANTES
 
+- Autenticação / Token JWT não feito por não constar no Desafio
+- Como a aplicação está pública, *.marciusbezerra.com, pode conter dados ofensivos / imprevisíveis (de curiosos)
 - Importante! Como é um Desafio, deixei a UI do Swagger na raiz
 - A API foi extensamente documenta, é comum fazer um código mais limpo
 - Como se trata de um Desafio, o CORS foi completamente LIBERADO
