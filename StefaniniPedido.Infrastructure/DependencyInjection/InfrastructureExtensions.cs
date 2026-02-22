@@ -30,6 +30,8 @@ public static class InfrastructureExtensions
                 options.UseSqlServer(connectionString));
         }
 
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+
         services.AddScoped<IPedidoRepository, PedidoRepository>();
         services.AddScoped<IProdutoRepository, ProdutoRepository>();
 

@@ -6,9 +6,10 @@ using StefaniniPedido.Domain.Interfaces;
 namespace StefaniniPedido.Application.Services;
 
 public class PedidoService(
-    IPedidoRepository pedidoRepository, 
-    IProdutoRepository produtoRepository) : IPedidoService
-{
+    IPedidoRepository pedidoRepository,
+    IUnitOfWork unitOfWork) : IPedidoService
+    {
+
     public async Task<IEnumerable<PedidoDto>> ObterTodosAsync()
     {
         var pedidos = await pedidoRepository.ObterTodosAsync();
@@ -23,17 +24,29 @@ public class PedidoService(
 
     public async Task<PedidoDto> CriarAsync(CreatePedidoDto dto)
     {
-        var pedido = new Pedido(dto.NomeCliente, dto.EmailCliente);
-        var pedidoCriado = await pedidoRepository.CriarAsync(pedido);
-
-        foreach (var itemDto in dto.ItensPedido)
+        await unitOfWork.BeginTransactionAsync();
+        try 
         {
-            var item = new ItensPedido(pedidoCriado.Id, itemDto.IdProduto, itemDto.Quantidade);
-            pedidoCriado.AdicionarItem(item);
-        }
+            var pedido = new Pedido(dto.NomeCliente, dto.EmailCliente);
+            var pedidoCriado = await pedidoRepository.CriarAsync(pedido);
 
-        var pedidoAtualizado = await pedidoRepository.AtualizarAsync(pedidoCriado);
-        return MapToDto(pedidoAtualizado);
+            foreach (var itemDto in dto.ItensPedido)
+            {
+                var item = new ItensPedido(pedidoCriado.Id, itemDto.IdProduto, itemDto.Quantidade);
+                pedidoCriado.AdicionarItem(item);
+            }
+
+            var pedidoAtualizado = await pedidoRepository.AtualizarAsync(pedidoCriado);
+
+            await unitOfWork.CommitAsync();
+
+            return MapToDto(pedidoAtualizado);
+        }
+        catch
+        {
+            await unitOfWork.RollbackAsync();
+            throw;
+        }
     }
 
     public async Task<PedidoDto?> AtualizarAsync(int id, UpdatePedidoDto dto)
