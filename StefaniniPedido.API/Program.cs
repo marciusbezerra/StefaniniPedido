@@ -41,8 +41,12 @@ app.UseMiddleware<ExceptionHandlingMiddleware>();
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    // db.Database.EnsureCreated();
-    db.Database.Migrate();
+
+    var stringConnection = builder.Configuration.GetConnectionString("DefaultConnection");
+    if (string.IsNullOrEmpty(stringConnection) || stringConnection == "InMemory")
+        db.Database.EnsureCreated();
+    else
+        db.Database.Migrate();
 }
 
 app.UseSwagger();

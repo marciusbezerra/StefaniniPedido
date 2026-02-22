@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Storage;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using StefaniniPedido.Domain.Interfaces;
 using StefaniniPedido.Infrastructure.Data;
 
@@ -11,7 +12,10 @@ namespace StefaniniPedido.Infrastructure.Repositories
 
         public async Task BeginTransactionAsync()
         {
-            _transaction ??= await _context.Database.BeginTransactionAsync();
+            if (_context.Database.IsInMemory())
+                return; // InMemory não suporta transações, então apenas ignore
+            if (_transaction == null)
+                _transaction ??= await _context.Database.BeginTransactionAsync();
         }
 
         public async Task CommitAsync()
