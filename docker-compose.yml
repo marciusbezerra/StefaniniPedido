@@ -66,6 +66,7 @@
 
 volumes:
   sqlserver_data:
+    name: stefanini_sqlserver_data
 
 
 networks:
