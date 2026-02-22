@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using StefaniniPedido.API.Middlewares;
 using StefaniniPedido.Infrastructure.Data;
 using StefaniniPedido.Infrastructure.DependencyInjection;
 
@@ -34,6 +35,8 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+app.UseMiddleware<ExceptionHandlingMiddleware>();
+
 // OBS: Apenas para facilitar o Desafio, auto migration do banco e seed data
 using (var scope = app.Services.CreateScope())
 {
@@ -56,4 +59,4 @@ app.MapControllers();
 
 app.Run();
 
-public partial class Program { } 
+public partial class Program { }

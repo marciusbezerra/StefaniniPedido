@@ -132,7 +132,7 @@ ng serve
 ## Testes Unitários
 
 ```bash
-dotnet test tests/StefaniniPedido.Tests --logger "console;verbosity=normal"
+dotnet test StefaniniPedido.Tests --logger "console;verbosity=normal"
 ```
 ---
 

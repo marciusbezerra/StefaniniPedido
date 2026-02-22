@@ -1,4 +1,4 @@
-using Moq;
+﻿using Moq;
 using FluentAssertions;
 using StefaniniPedido.Application.DTOs;
 using StefaniniPedido.Application.Services;
@@ -10,14 +10,14 @@ namespace StefaniniPedido.Tests.Services;
 public class PedidoServiceTests
 {
     private readonly Mock<IPedidoRepository> _pedidoRepoMock;
-    private readonly Mock<IProdutoRepository> _produtoRepoMock;
+    private readonly Mock<IUnitOfWork> _unitOfWorkMock;
     private readonly PedidoService _service;
 
     public PedidoServiceTests()
     {
         _pedidoRepoMock = new Mock<IPedidoRepository>();
-        _produtoRepoMock = new Mock<IProdutoRepository>();
-        _service = new PedidoService(_pedidoRepoMock.Object, _produtoRepoMock.Object);
+        _unitOfWorkMock = new Mock<IUnitOfWork>();
+        _service = new PedidoService(_pedidoRepoMock.Object, _unitOfWorkMock.Object);
     }
 
     [Fact(DisplayName = "ObterTodos - Deve retornar lista de pedidos")]
