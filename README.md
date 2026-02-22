@@ -86,7 +86,7 @@ StefaniniPedido/
 
 ## Execução Local (sem Docker)
 
-OBS. banco InMemory (não necessita SQL Server)
+OBS. banco InMemory (não necessita SQL Server, nem Migrations)
 
 ### Pré-requisitos
 - [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0)
@@ -97,16 +97,6 @@ OBS. banco InMemory (não necessita SQL Server)
 
 ```bash
 cd StefaniniPedido.API
-
-# dotnet ef migrations add InitialCreate \
-#  --project StefaniniPedido.Infrastructure \
-#  --startup-project StefaniniPedido.API \
-#  --output-dir Data/Migrations
-
-dotnet ef database update \
-  --project StefaniniPedido.Infrastructure \
-  --startup-project StefaniniPedido.API
-
 dotnet run
 # Swagger disponível em: http://localhost:5000
 ```
