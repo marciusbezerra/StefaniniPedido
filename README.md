@@ -20,7 +20,7 @@ Executar os seguintes comandos
 # Clonar e subir tudo
 git clone <repo-url>
 cd StefaniniPedido
-# .env copiar o .env agora para cá
+# .env copiar o .env agora para cá.. FAVOR, NÃO ESQUECER O .ENV!
 docker compose up -d --build
 ```
 
@@ -71,7 +71,6 @@ StefaniniPedido/
 ├── clients/
 │   ├── pedido-angular/                  # Front-end Angular 19 + Bootstrap 5
 │   └── pedido-react/                    # Front-end React 18 + Vite + Bootstrap 5
-├── Dockerfile                           # Build da API
 ├── docker-compose.yml                   # Orquestração completa
 └── README.md
 ```
@@ -107,7 +106,6 @@ dotnet run
 cd clients/pedido-react
 npm install
 npm run dev
-# Disponível em: http://localhost:5173
 ```
 
 ### Angular Client
@@ -116,7 +114,6 @@ npm run dev
 cd clients/pedido-angular
 npm install
 ng serve
-# Disponível em: http://localhost:4200
 ```
 
 ## Testes Unitários
@@ -135,7 +132,7 @@ dotnet test StefaniniPedido.Tests --logger "console;verbosity=normal"
 - Swashbuckle (Swagger)
 
 **Front-end Angular:**
-- Angular 19, TypeScript, Bootstrap 5
+- Angular 21, TypeScript, Bootstrap 5
 - Angular Reactive Forms, HttpClientModule
 
 **Front-end React:**
